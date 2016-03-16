@@ -2,20 +2,25 @@
   * warp a huge image to a small image by three methods and compare the results
   * first method : zoom-out and warp using decomposition
   * second method : zoom-out and warp using ripmap
-  * third method : naive warping (bilinear) then zoom-out (ground truth)
+  * third method : bilinear warping then zoom-out (ground truth)
   * 
-  * assumption : the input is of size z*WOUT * z*HOUT for some integer z
+  * the input must be of size z*WOUT * z*HOUT for some integer z
   *
-  * the coefficient given corresponds to the homography that decomp and ripmap will apply
+  * the input 3x3 matrix corresponds to the homography that decomp and ripmap will apply on the zoomed-out image
   * (i.e. from a WOUT*HOUT image to a WOUT*HOUT image)
+  * it does NOT correspond to the homography that will be applied to the large blurred image
+  * 
+  * 
   * 
   * compilation
   * 	gcc-5 -fopenmp -O3 test_ground_truth.c -lfftw3 -ltiff -ljpeg -lpng -o test_ground_truth
   * 	gcc -std=c99 -fopenmp -O3 test_ground_truth.c -lfftw3 -ltiff -ljpeg -lpng -o test_ground_truth
   * usage
   * 	./test_ground_truth [image.png] a b p c d q r s t
+  * 	(input image and homography matrix)
   *		or
   * 	./test_ground_truth [image.png] a b p c d q r s t i1 j1 i2 j2
+  * 	(input image, homography matrix and two pixels between which the error will be computed)
   */
 
 
