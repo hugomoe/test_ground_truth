@@ -1,5 +1,5 @@
 /*
- * zoom in an image by a given factor
+ * zoom in an image by a given integer factor, using zero-padding
  */
 
 #include <stdlib.h>
