@@ -1,0 +1,5 @@
+example of homography matrix that warp a 256*256 image to a 256*256 image :
+1.529209  0        0
+0         1.386113 0
+0.0010651 0        1
+a relevant area (away from boundaries) on which l1 and L2 errors can bu computed : pixels (10,10) to (190,170)
