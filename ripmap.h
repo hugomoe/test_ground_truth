@@ -135,14 +135,15 @@ void precal_D(double H[3][3],double *D){
 
 
 
+
 //bilinear interpolation on the RipMap
 static float bilinear_ripmap(float *x, int w,
 		float p, float q, int l, int d1, int d2){
 	//a rectangle represent several pixels ; thus the coordinates p and q must be shifted
 	float pp = p - 1/2*(pow(2,d1)-1)/pow(2,d1);
 	float qq = q - 1/2*(pow(2,d2)-1)/pow(2,d2);
-	int ip = floor(p);
-	int iq = floor(q);
+	int ip = floor(pp);
+	int iq = floor(qq);
 	float a = x[coord(d1,d2,ip,iq,w,l)];
 	float b = x[coord(d1,d2,ip+1,iq,w,l)];
 	float c = x[coord(d1,d2,ip,iq+1,w,l)];
