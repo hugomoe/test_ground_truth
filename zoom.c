@@ -45,7 +45,7 @@ int main(int argc,char *argv[]){
 			for(int j=0;j<2*h;j++){
 				j_sym = j-h/2;
 				if(j_sym<0){j_sym = -1-j_sym;}
-				else if(j_sym>w-1){j_sym = 2*h-1-j_sym;}
+				else if(j_sym>h-1){j_sym = 2*h-1-j_sym;}
 				img_sym[pd*(i+2*w*j)+l] = img[pd*(i_sym+w*j_sym)+l];
 			}
 		}
