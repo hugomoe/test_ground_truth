@@ -170,7 +170,7 @@ free(img);
 
 //output
 	iio_save_image_float_vec("img_dec.png",img_dec,WOUT,HOUT,3);
-	iio_save_image_float_vec("img_grd.png",img_grd,WOUT,HOUT,3);
+	iio_save_image_float_vec("img_grd.png",img_grd,WOUT,HOUT,pd);
 	iio_save_image_float_vec("img_rip.png",img_rip,WOUT,HOUT,3);
 
 
@@ -203,22 +203,23 @@ free(img);
 		l1_dr = 0., l2_dr = 0., //compare decomposition and ripmap
 		l1_rg = 0., l2_rg = 0.; //compare ripmap and ground truth
 	float diff;
-	int idx;
+	int idx, idxx;
 
 	for(int l=0 ; l<pd ; l++)
 		for(int i=i_tl ; i<=i_br ; i++)
 			for(int j=j_tl ; j<=j_br ; j++){
-				idx = 3*(i+WOUT*j) + l;
+				idx = pd*(i+WOUT*j) + l;
+				idxx = 3*(i+WOUT*j) + l;
 
-				diff = fabs(img_dec[idx]-img_grd[idx]);
+				diff = fabs(img_dec[idxx]-img_grd[idx]);
 				l1_dg += diff;
 				l2_dg += pow(diff,2);
 
-				diff = fabs(img_dec[idx]-img_rip[idx]);
+				diff = fabs(img_dec[idxx]-img_rip[idxx]);
 				l1_dr += diff;
 				l2_dr += pow(diff,2);
 
-				diff = fabs(img_rip[idx]-img_grd[idx]);
+				diff = fabs(img_rip[idxx]-img_grd[idx]);
 				l1_rg += diff;
 				l2_rg += pow(diff,2);
 	}
